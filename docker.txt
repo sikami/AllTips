@@ -1,0 +1,60 @@
+DOCKER
+
+==================
+Dockerfile (needs to be created yourself in text editor)
+==================
+FROM [os]:[version]
+RUN apt-get -y update (updates everything)
+RUN apt-get -y install [image name can be found on Docker Hub]
+EXPOSE 80 (port that is docker listening from)
+CMD [apachectl] -D FOREGROUND (running the program)
+
+===============
+Build the docker
+===============
+run this on the cli:
+$ sudo docker build -t [name has to be lowercase; eg: customer_image] . (it needs the dot)
+
+==============
+Docker command
+==============
+$sudo docker images (it will list all the images stored in local)
+$sudo docker ps (checks what images is running)
+$sudo docker stop [container id]
+
+==============
+Troubleshoot
+==============
+1. If this command appears: 
+AH0558: apache2: Could not reliably determine the server's fully qualifed domain name, using 172.17.02 Set the 'ServerName' directive globally to surpress this message.
+(this is because in CMD up there, we specify apache to run in foreground mode, it has to run directly)
+
+solution:
+
+1. detach the image with:
+$sudo docker run -dit -p 80:80 [name of image]
+-p : port 80 in our local map it to docker which is on 80
+
+check if image is running and run it by typing localhost in the we browser, if its a web development image
+
+===================================
+HOW TO SETUP GITLAB-RUNNER MANUALLY
+===================================
+1. for Help
+sudo gitlab-runner --help
+2. Register the runner
+sudo gitlab-runner register
+-- then enter url cordinator setup (can be found on gitlab runner page in gitlab under setup specific runner manually)
+-- then enter the token (can be found on gitlab runner page in gitlab under setup specific runner manually)
+-- then just type description for the runner (up to you)
+-- then enter tags for the runner (IMPORTANT!!) (needs to be the same as the tags in the yml file, if the stage is build, test, deploy)
+$stage, build, test, deploy, qa
+-- then there will be question for if you want run the build that is untagged, just press enter
+-- then there is question if we want to lock the runner to the project we are running, just press enter
+-- then enter the executor: up to you (but in the example it runs shell exec)
+
+
+
+
+
+
