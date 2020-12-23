@@ -1,0 +1,59 @@
+SDLC - software development life cycle
+
+Project Plan
+Requirements
+Analysis
+Design
+Coding
+Testing
+Deployment
+
+
+Docker
+- lightweight alternatives compared to virtual machine
+- easier to create, deploy, run by using containers
+- no need to allocate RAM
+
+Docker images
+- read only templates to create containers
+- stored in public/private repo
+- contains dependencies for applications or microservices
+
+Docker containers
+- run time instances of docker images (contains everything to run app)
+- build from or more images
+
+Docker compose:
+- can run few applications at once
+
+How to:
+install docker-compose
+create a dir where docker-compose.yml live
+
+inside docker-compose.yml:
+wordpress:
+	image: wordpress
+	links:
+	- wordpress_db:mysql
+	ports:
+	- 8080:80
+wordpress_db:
+	image: mariadb
+	environment:
+	MYSQL_ROOT_PASSWORD: password
+pypmyadmin:
+	image: corbinu/docker-phpmyadmin
+	links:
+	- wordpress_db:mysql
+	ports:
+	- 8181:80
+	environment:
+	MYSQL_USERNAME: root
+	MYSQL_ROOT_PASSWORD: password
+
+to run Docker compose:
+sudo docker-compose up -d
+
+
+
+

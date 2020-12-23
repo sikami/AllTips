@@ -1,0 +1,17 @@
+GITLAB REGISTRY
+
+-- important!!!!! central point of communication
+
+=================
+Register your docker
+=================
+$sudo docker login registry.gitlab.com
+--- then it will ask for your credential, fill it in and enter
+
+make another folder called registry or whatever in parent dir of your docker images
+then COPY dockerfile from images to registry folder
+
+
+
+
+
